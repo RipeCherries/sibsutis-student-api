@@ -1,0 +1,22 @@
+{
+  "name": "sibsutis-schedule-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RipeCherries/sibsutis-schedule-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RipeCherries/sibsutis-schedule-api/issues"
+  },
+  "homepage": "https://github.com/RipeCherries/sibsutis-schedule-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
