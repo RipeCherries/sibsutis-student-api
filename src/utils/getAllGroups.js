@@ -1,9 +1,7 @@
-function getAllGroups(file) {
-    // console.log(file);
-
+const getAllGroups = (data) => {
     const unique = [];
 
-    file.forEach((element) => {
+    data.forEach((element) => {
         if (unique.indexOf(element["Группа"]) === -1) {
             unique.push(element["Группа"])
         }
