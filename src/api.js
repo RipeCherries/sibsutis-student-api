@@ -26,8 +26,8 @@ const fs = require("fs");
 
 
 /* --- Importing custom functions --- */
-const getAllGroups = require("./utils/getAllGroups");
-const getSchedule = require("./utils/getSchedule");
+const getAllGroups = require("./getAllGroups");
+const getSchedule = require("./getSchedule");
 
 
 /* --- Creating an API application --- */
@@ -62,7 +62,7 @@ router.get("/", (req, res) => {
 
 // admin URL:
 router.get("/admin", auth, (req, res) => {
-    res.sendFile(__dirname + "/public/index.html" );
+    res.sendFile(__dirname + "/index.html" );
 })
 
 // schedule update URL:
@@ -73,10 +73,10 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync(__dirname + "/data/allGroups.json", JSON.stringify(groupsData));
+    fs.writeFileSync(__dirname + "/allGroups.json", JSON.stringify(groupsData));
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync(__dirname + "/data/schedule.json", JSON.stringify(scheduleData));
+    fs.writeFileSync(__dirname + "/schedule.json", JSON.stringify(scheduleData));
 
 
     const d = new Date();
@@ -84,28 +84,28 @@ router.post("/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync(__dirname + "/data/date.json", JSON.stringify(tmp));
+    fs.writeFileSync(__dirname + "/date.json", JSON.stringify(tmp));
 
     return res.sendStatus(200);
 });
 
 // get list of group name`s URL:
 router.get("/allGroups", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/allGroups.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/allGroups.json", "utf8");
     const groups = JSON.parse(data);
     res.send(groups);
 });
 
 // get schedule URL:
 router.get("/schedule", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/schedule.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/schedule.json", "utf8");
     const schedule = JSON.parse(data);
     res.send(schedule);
 });
 
 // get last update date URL:
 router.get("/lastUpdate", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/date.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/date.json", "utf8");
     const date = JSON.parse(data);
     res.send(date);
 })
