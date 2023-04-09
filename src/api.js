@@ -112,6 +112,7 @@ router.get("/lastUpdate", (req, res) => {
 
 app.use("/", router);
 
+module.exports = app;
 module.exports.handler = serverless(app);
 
 
