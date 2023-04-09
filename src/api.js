@@ -19,14 +19,15 @@
 
 /* --- Importing libraries --- */
 const express = require("express");
+const serverless = require("serverless-http");
 const basicAuth = require('express-basic-auth');
 const bodyParser = require('body-parser');
 const fs = require("fs");
 
 
 /* --- Importing custom functions --- */
-const getAllGroups = require("./src/utils/getAllGroups");
-const getSchedule = require("./src/utils/getSchedule");
+const getAllGroups = require("./utils/getAllGroups");
+const getSchedule = require("./utils/getSchedule");
 
 
 /* --- Creating an API application --- */
@@ -41,6 +42,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+/* --- API router --- */
+const router = express.Router();
+
+
 /* --- Authorization --- */
 const auth = basicAuth({
     users: { 'admin': 'admin' },
@@ -50,28 +55,28 @@ const auth = basicAuth({
 
 /* --- API endpoint`s --- */
 // common (main) URL:
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
     res.send("API for the SibSUTIS University schedule mobile application. " +
         "Go to the URL /admin to enter the admin panel.");
 })
 
 // admin URL:
-app.get("/admin", auth, (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+router.get("/admin", auth, (req, res) => {
+    res.sendFile(__dirname + "/public/index.html" );
 })
 
 // schedule update URL:
-app.post("/api/scheduleUpload", auth, (req, res) => {
+router.post("/scheduleUpload", auth, (req, res) => {
     if (!req.body) {
         return res.sendStatus(400);
     }
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync("./src/data/allGroups.json", JSON.stringify(groupsData));
+    fs.writeFileSync(__dirname + "/data/allGroups.json", JSON.stringify(groupsData));
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync("./src/data/schedule.json", JSON.stringify(scheduleData));
+    fs.writeFileSync(__dirname + "/data/schedule.json", JSON.stringify(scheduleData));
 
 
     const d = new Date();
@@ -79,34 +84,34 @@ app.post("/api/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync("./src/data/date.json", JSON.stringify(tmp));
+    fs.writeFileSync(__dirname + "/data/date.json", JSON.stringify(tmp));
 
     return res.sendStatus(200);
 });
 
 // get list of group name`s URL:
-app.get("/api/allGroups", (req, res) => {
-    const data = fs.readFileSync("./src/data/allGroups.json", "utf8");
+router.get("/allGroups", (req, res) => {
+    const data = fs.readFileSync(__dirname + "/data/allGroups.json", "utf8");
     const groups = JSON.parse(data);
     res.send(groups);
 });
 
 // get schedule URL:
-app.get("/api/schedule", (req, res) => {
-    const data = fs.readFileSync("./src/data/schedule.json", "utf8");
+router.get("/schedule", (req, res) => {
+    const data = fs.readFileSync(__dirname + "/data/schedule.json", "utf8");
     const schedule = JSON.parse(data);
     res.send(schedule);
 });
 
 // get last update date URL:
-app.get("/api/lastUpdate", (req, res) => {
-    const data = fs.readFileSync("./src/data/date.json", "utf8");
+router.get("/lastUpdate", (req, res) => {
+    const data = fs.readFileSync(__dirname + "/data/date.json", "utf8");
     const date = JSON.parse(data);
     res.send(date);
 })
 
+app.use("/", router);
 
-/* --- Start app --- */
-app.listen(3000, () => {
-    console.log("The server is waiting for connection");
-})
+module.exports.handler = serverless(app);
+
+
