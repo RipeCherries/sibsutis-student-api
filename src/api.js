@@ -110,7 +110,7 @@ router.get("/lastUpdate", (req, res) => {
     res.send(date);
 })
 
-app.use("/", router);
+app.use("/.netlify/functions/api", router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
