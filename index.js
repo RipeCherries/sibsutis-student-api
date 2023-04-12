@@ -72,10 +72,10 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync(__dirname + "/data/allGroups.json", JSON.stringify(groupsData));
+    fs.writeFileSync(__dirname + "/tmp/allGroups.json", JSON.stringify(groupsData));
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync(__dirname + "/data/schedule.json", JSON.stringify(scheduleData));
+    fs.writeFileSync(__dirname + "/tmp/schedule.json", JSON.stringify(scheduleData));
 
 
     const d = new Date();
@@ -83,28 +83,28 @@ router.post("/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync(__dirname + "/data/date.json", JSON.stringify(tmp));
+    fs.writeFileSync(__dirname + "/tmp/date.json", JSON.stringify(tmp));
 
     return res.sendStatus(200);
 });
 
 // get list of group name`s URL:
 router.get("/allGroups", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/allGroups.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/tmp/allGroups.json", "utf8");
     const groups = JSON.parse(data);
     res.send(groups);
 });
 
 // get schedule URL:
 router.get("/schedule", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/schedule.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/tmp/schedule.json", "utf8");
     const schedule = JSON.parse(data);
     res.send(schedule);
 });
 
 // get last update date URL:
 router.get("/lastUpdate", (req, res) => {
-    const data = fs.readFileSync(__dirname + "/data/date.json", "utf8");
+    const data = fs.readFileSync(__dirname + "/tmp/date.json", "utf8");
     const date = JSON.parse(data);
     res.send(date);
 })
