@@ -72,10 +72,10 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync("./api/allGroups.json", JSON.stringify(groupsData));
+    fs.writeFileSync("./allGroups.json", JSON.stringify(groupsData));
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync("./api/schedule.json", JSON.stringify(scheduleData));
+    fs.writeFileSync("./schedule.json", JSON.stringify(scheduleData));
 
 
     const d = new Date();
@@ -83,7 +83,7 @@ router.post("/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync("./api/date.json", JSON.stringify(tmp));
+    fs.writeFileSync("./date.json", JSON.stringify(tmp));
 
 
     return res.sendStatus(200);
