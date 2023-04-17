@@ -72,11 +72,11 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync(__dirname + "/tmp/allGroups.json", JSON.stringify(groupsData));
+    fs.writeFileSync("/tmp/allGroups.json", JSON.stringify(groupsData));
     fs.copyFileSync(__dirname + "/tmp/allGroups.json", __dirname + "/data/allGroups.json");
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync(__dirname + "/tmp/schedule.json", JSON.stringify(scheduleData));
+    fs.writeFileSync("/tmp/schedule.json", JSON.stringify(scheduleData));
     fs.copyFileSync(__dirname + "/tmp/schedule.json", __dirname + "/data/schedule.json");
 
 
@@ -85,7 +85,7 @@ router.post("/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync(__dirname + "/tmp/date.json", JSON.stringify(tmp));
+    fs.writeFileSync("/tmp/date.json", JSON.stringify(tmp));
     fs.copyFileSync(__dirname + "/tmp/date.json", __dirname + "/data/date.json");
 
 
