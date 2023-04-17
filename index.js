@@ -49,7 +49,13 @@ const router = express.Router();
 const auth = basicAuth({
     users: { 'admin': 'admin' },
     challenge: true
-})
+});
+
+
+/* --- Data --- */
+let lastUpdate = {};
+let allGroups = [];
+let schedule = [];
 
 
 /* --- API endpoint`s --- */
@@ -71,19 +77,15 @@ router.post("/scheduleUpload", auth, (req, res) => {
     }
 
 
-    const groupsData = getAllGroups(req.body);
-    fs.writeFileSync("./allGroups.json", JSON.stringify(groupsData));
-
-    const scheduleData = getSchedule(req.body);
-    fs.writeFileSync("./schedule.json", JSON.stringify(scheduleData));
-
+    allGroups = JSON.stringify(getAllGroups(req.body));
+    schedule = JSON.stringify(getSchedule(req.body));
 
     const d = new Date();
     const tmp = {
         date: d.getTime()
     }
 
-    fs.writeFileSync("./date.json", JSON.stringify(tmp));
+    lastUpdate = JSON.stringify(tmp);
 
 
     return res.sendStatus(200);
@@ -91,23 +93,20 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 // get list of group name`s URL:
 router.get("/allGroups", (req, res) => {
-    const data = fs.readFileSync("./data/allGroups.json", "utf8");
-    const groups = JSON.parse(data);
-    res.send(groups);
+    const data = JSON.parse(allGroups);
+    res.send(data);
 });
 
 // get schedule URL:
 router.get("/schedule", (req, res) => {
-    const data = fs.readFileSync("./data/schedule.json", "utf8");
-    const schedule = JSON.parse(data);
-    res.send(schedule);
+    const data = JSON.parse(schedule);
+    res.send(data);
 });
 
 // get last update date URL:
 router.get("/lastUpdate", (req, res) => {
-    const data = fs.readFileSync("./data/date.json", "utf8");
-    const date = JSON.parse(data);
-    res.send(date);
+    const data = JSON.parse(lastUpdate);
+    res.send(data);
 })
 
 app.use("/", router);
