@@ -22,7 +22,6 @@ const express = require("express");
 const basicAuth = require('express-basic-auth');
 const bodyParser = require('body-parser');
 const fs = require("fs");
-const path = require("path");
 
 
 /* --- Importing custom functions --- */
@@ -73,12 +72,10 @@ router.post("/scheduleUpload", auth, (req, res) => {
 
 
     const groupsData = getAllGroups(req.body);
-    fs.writeFileSync("/tmp/allGroups.json", JSON.stringify(groupsData));
-    fs.copyFileSync("/tmp/allGroups.json", path.join(process.cwd(), "data/allGroups.json"));
+    fs.writeFileSync("./api/allGroups.json", JSON.stringify(groupsData));
 
     const scheduleData = getSchedule(req.body);
-    fs.writeFileSync("/tmp/schedule.json", JSON.stringify(scheduleData));
-    fs.copyFileSync("/tmp/schedule.json", path.join(process.cwd(), "data/schedule.json"));
+    fs.writeFileSync("./api/schedule.json", JSON.stringify(scheduleData));
 
 
     const d = new Date();
@@ -86,8 +83,7 @@ router.post("/scheduleUpload", auth, (req, res) => {
         date: d.getTime()
     }
 
-    fs.writeFileSync("/tmp/date.json", JSON.stringify(tmp));
-    fs.copyFileSync("/tmp/date.json", path.join(process.cwd(), "data/date.json"));
+    fs.writeFileSync("./api/date.json", JSON.stringify(tmp));
 
 
     return res.sendStatus(200);
