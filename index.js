@@ -56,6 +56,7 @@ const auth = basicAuth({
 let lastUpdate = {};
 let allGroups = [];
 let schedule = [];
+let startSemesrt = {};
 
 
 /* --- API endpoint`s --- */
@@ -91,6 +92,23 @@ router.post("/scheduleUpload", auth, (req, res) => {
     return res.sendStatus(200);
 });
 
+// schedule update URL:
+router.post("/startSemestrUpload", auth, (req, res) => {
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+
+
+    const d = new Date(req.body);
+    const tmp = {
+        date: d.getTime()
+    }
+
+    startSemesrt = JSON.stringify(tmp);
+
+    return res.sendStatus(200);
+});
+
 // get list of group name`s URL:
 router.get("/allGroups", (req, res) => {
     const data = JSON.parse(allGroups);
@@ -106,6 +124,11 @@ router.get("/schedule", (req, res) => {
 // get last update date URL:
 router.get("/lastUpdate", (req, res) => {
     const data = JSON.parse(lastUpdate);
+    res.send(data);
+})
+
+router.get("/startSemestr", (req, res) => {
+    const data = JSON.parse(startSemesrt);
     res.send(data);
 })
 

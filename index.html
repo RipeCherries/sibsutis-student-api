@@ -6,6 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SibSUTIS-SCHEDULE API</title>
+    <style>
+        .date-input {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body onload="getDate();">
 <div class="container">
@@ -26,6 +32,20 @@
             <input class="upload__file" type="file" name="file" id="inputFile">
             <input class="upload__btn" type="submit" value="Отправить" onclick="sendFile(); getDate();">
         </section>
+        <section>
+            <div class="date-input">
+                <label for="day">День:</label>
+                <select id="day"></select>
+            </div>
+            <div class="date-input">
+                <label for="month">Месяц:</label>
+                <select id="month"></select>
+            </div>
+            <div class="date-input">
+                <label for="year">Год:</label>
+                <select id="year"></select>
+            </div>
+        </section>
         <section class="info">
             <div class="info__title">Дата последнего обновления:</div>
             <div class="info__date"></div>
@@ -45,6 +65,37 @@
     }
 </script>
 <script>
+    function createOptions(select, start, end) {
+        for (let i = start; i <= end; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.appendChild(option);
+        }
+    }
+
+    const daySelect = document.getElementById("day");
+    const monthSelect = document.getElementById("month");
+    const yearSelect = document.getElementById("year");
+
+    createOptions(daySelect, 1, 31);
+    createOptions(monthSelect, 1, 12);
+    createOptions(yearSelect, 2020, 2050);
+
+    let selectedDate;
+    function handleDateChange() {
+        const selectedDay = parseInt(daySelect.value);
+        const selectedMonth = parseInt(monthSelect.value) - 1;
+        const selectedYear = parseInt(yearSelect.value);
+
+        selectedDate = new Date(selectedYear, selectedMonth, selectedDay);
+    }
+
+    daySelect.addEventListener("change", handleDateChange);
+    monthSelect.addEventListener("change", handleDateChange);
+    yearSelect.addEventListener("change", handleDateChange);
+
+
     let file = null;
     let data = null;
 
@@ -68,5 +119,6 @@
             body: data
         });
     }
+
 </script>
 </html>
