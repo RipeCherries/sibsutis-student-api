@@ -30,7 +30,7 @@
         </section>
         <section class="upload">
             <input class="upload__file" type="file" name="file" id="inputFile">
-            <input class="upload__btn" type="submit" value="Отправить" onclick="sendFile(); getDate();">
+            <input class="upload__btn" type="submit" value="Отправить" onclick="sendFile(); sendStart(); getDate();">
         </section>
         <section>
             <div class="date-input">
@@ -120,7 +120,7 @@
         });
     }
 
-    async function sendFile() {
+    async function sendStart() {
         const response = await fetch("/startSemestrUpload", {
             method: "POST",
             headers: {"Accept": "application/json", "Content-Type": "application/json"},
