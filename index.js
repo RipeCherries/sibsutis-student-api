@@ -98,11 +98,19 @@ router.post("/startSemestrUpload", auth, (req, res) => {
         return res.sendStatus(400);
     }
 
+    console.log(req.body);
+    console.log(typeof req.body);
 
     const d = new Date(req.body);
+
+    console.log(d.getTime());
+    console.log(d);
+
     const tmp = {
         date: d.getTime()
     }
+
+    console.log(tmp);
 
     startSemesrt = JSON.stringify(tmp);
 
