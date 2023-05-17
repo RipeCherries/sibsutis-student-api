@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<body onload="getDate();">
+<body>
 <div class="container">
     <div class="content">
         <section class="title">
@@ -30,7 +30,7 @@
         </section>
         <section class="upload">
             <input class="upload__file" type="file" name="file" id="inputFile">
-            <input class="upload__btn" type="submit" value="Отправить" onclick="sendFile(); sendStart(); getDate();">
+            <input class="upload__btn" type="submit" value="Отправить" onclick="sendFile(); getDate(); sendStart();">
         </section>
         <section>
             <div class="date-input">
@@ -121,10 +121,14 @@
     }
 
     async function sendStart() {
+        const tmp = {
+            date: selectedDate.getTime()
+        }
+
         const response = await fetch("/startSemestrUpload", {
             method: "POST",
             headers: {"Accept": "application/json", "Content-Type": "application/json"},
-            body: selectedDate.getTime()
+            body: JSON.stringify(tmp)
         });
     }
 
