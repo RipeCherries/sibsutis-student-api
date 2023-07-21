@@ -1,21 +1,20 @@
 {
   "name": "sibsutis-schedule-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend of the application \"Schedule of lessons of the Siberian State University of Telecommunications and Informatics\"",
+  "author": "Alexey Egoshin",
   "scripts": {
-    "start": "node index.js"
+    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RipeCherries/sibsutis-schedule-api.git"
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "nodemon": "^3.0.1"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RipeCherries/sibsutis-schedule-api/issues"
-  },
-  "homepage": "https://github.com/RipeCherries/sibsutis-schedule-api#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
