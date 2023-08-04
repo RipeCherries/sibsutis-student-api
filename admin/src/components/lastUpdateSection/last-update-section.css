@@ -1,0 +1,17 @@
+.last-update-section {
+    margin-top: 8vh;
+}
+
+.last-update-section__info {
+    display: flex;
+    align-items: center;
+}
+
+.last-update-section__info__text {
+    margin-left: 0.5vw;
+    font-weight: 700;
+}
+
+.last-update-section__info__date {
+    margin-left: 1vw;
+}
