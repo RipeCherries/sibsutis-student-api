@@ -1,0 +1,83 @@
+.drop-file-input {
+    position: relative;
+    width: 40vw;
+    height: 30vh;
+    border: 4px dashed white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-file-input input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.drop-file-input:hover,
+.drop-file-input.dragover {
+    opacity: 0.5;
+}
+
+.drop-file-input__label {
+    text-align: center;
+    font-weight: 600;
+}
+
+.drop-file-input__label__warning {
+    margin-top: 1vh;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.drop-file-preview {
+    margin-top: 2vh;
+}
+
+.drop-file-preview__title {
+    margin-bottom: 2vh;
+}
+
+.drop-file-preview__item {
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.drop-file-preview__item__info_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.drop-file-preview__item__info {
+    margin-left: 1vw;
+}
+
+.drop-file-preview__item__info p {
+    font-weight: 600;
+}
+
+.drop-file-preview__item__delete {
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.drop-file-preview__item__delete__icon {
+    color: rgba(255, 255, 255, 0.1);
+}
+
+.drop-file-preview__item:hover .drop-file-preview__item__delete {
+    opacity: 1;
+}
