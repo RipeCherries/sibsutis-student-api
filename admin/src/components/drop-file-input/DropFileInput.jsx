@@ -45,12 +45,10 @@ const DropFileInput = () => {
         }
 
         setFile((prevFile) => newFile);
-        console.log(file);
     }
 
     const fileRemove = () => {
         setFile(null);
-        console.log(file);
     }
 
     return (
