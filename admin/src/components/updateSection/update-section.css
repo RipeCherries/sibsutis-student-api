@@ -6,3 +6,16 @@
     text-align: center;
     margin-bottom: 6vh;
 }
+
+.update-section__controls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.update-section__date-picker {
+    /*margin-left: 4vw;*/
+}
+
+.update-section__date-picker__title {
+    margin-bottom: 1vh;
+}
