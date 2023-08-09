@@ -1,15 +1,18 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
+import {useSelector, useDispatch} from "react-redux";
 import {ToastContainer, toast} from 'react-toastify';
 import {AiOutlineCloudUpload} from "react-icons/ai";
 import {BsFiletypeJson} from "react-icons/bs";
 import {MdDelete} from "react-icons/md";
-
+import {setUploadedFile, clearUploadedFile} from "../../store/fileReducer";
 import "./drop-file-input.css";
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const DropFileInput = () => {
     const wrapperRef = useRef(null);
-    const [file, setFile] = useState(null);
+    const uploadedFile   = useSelector(state => state.file.uploadedFile);
+    const dispatch = useDispatch();
 
     const notify = (text) => {
         toast.error(text);
@@ -34,7 +37,7 @@ const DropFileInput = () => {
             return;
         }
 
-        if (file !== null) {
+        if (uploadedFile !== null) {
             notify("Файл уже загружен!");
             return;
         }
@@ -44,11 +47,11 @@ const DropFileInput = () => {
             return;
         }
 
-        setFile((prevFile) => newFile);
+        dispatch(setUploadedFile(newFile));
     }
 
     const fileRemove = () => {
-        setFile(null);
+        dispatch(clearUploadedFile());
     }
 
     return (
@@ -67,15 +70,15 @@ const DropFileInput = () => {
                 </div>
                 <input type="file" onChange={onFileDrop}/>
             </div>
-            {file ? (
+            {uploadedFile ? (
                 <div className="drop-file-preview">
                     <p className="drop-file-preview__title">Готов к загрузке:</p>
                     <div className="drop-file-preview__item">
                         <div className="drop-file-preview__item__info_wrapper">
                             <BsFiletypeJson size={36}/>
                             <div className="drop-file-preview__item__info">
-                                <p>{file.name}</p>
-                                <p>{file.size}Б</p>
+                                <p>{uploadedFile.name}</p>
+                                <p>{uploadedFile.size}Б</p>
                             </div>
                         </div>
                         <div
