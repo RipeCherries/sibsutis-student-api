@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const groupSchema = new mongoose.Schema({
-  groups: {
-    type: [String],
-    required: [true, 'Поле groups должно быть заполнено!'],
+  groupName: {
+    type: String,
+    required: [true, 'Поле groupName должно быть заполнено!'],
+  },
+  groupId: {
+    type: Number,
+    required: [true, 'Поле groupId должно быть заполнено!'],
   },
 });
 
