@@ -22,10 +22,16 @@ module.exports.updateGroups = (req, res) => {
     return res.status(400).json({ message: 'Не предоставлены данные для обновления' });
   }
 
-  Group.findOneAndUpdate({}, newData, { new: true })
+  Group.deleteMany({})
+    .catch((error) => res.status(500).json({
+      message: 'Произошла ошибка при обновлении данных в БД',
+      error: error.message,
+    }));
+
+  Group.insertMany(newData)
     .then((updatedData) => {
       if (updatedData.length === 0) {
-        return res.status(400).json({ message: 'Документ в коллекции не найден' });
+        return res.status(400).json({ message: 'Документы в коллекции не найдены' });
       }
 
       res.json({ status: 'success', data: updatedData });
