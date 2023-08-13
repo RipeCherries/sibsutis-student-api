@@ -13,7 +13,10 @@
 }
 
 .update-section__date-picker {
-    /*margin-left: 4vw;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10vh;
 }
 
 .update-section__date-picker__title {

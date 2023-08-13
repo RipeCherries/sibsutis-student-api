@@ -4,6 +4,7 @@ import "./update-section.css";
 import DropFileInput from "../drop-file-input/DropFileInput";
 import CalendarPicker from "../calendar-picker/CalendarPicker";
 import {setStartOfSemester} from "../../store/startOfSemesterReducer";
+import SendButton from "../send-button/SendButton";
 
 const UpdateSection = () => {
     const startDate = useSelector(state => state.startOfSemester.date);
@@ -21,8 +22,11 @@ const UpdateSection = () => {
                     <DropFileInput/>
                 </div>
                 <div className="update-section__date-picker">
-                    <h5 className="update-section__date-picker__title">Дата начала семестра:</h5>
-                    <CalendarPicker value={startDate} onChange={handleDateChange}/>
+                    <div>
+                        <h5 className="update-section__date-picker__title">Дата начала семестра:</h5>
+                        <CalendarPicker value={startDate} onChange={handleDateChange}/>
+                    </div>
+                    <SendButton/>
                 </div>
             </div>
         </section>
