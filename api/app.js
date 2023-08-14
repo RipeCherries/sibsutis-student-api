@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { PORT, DB_PATH } = require('./utils/config');
-const routes = require('./routes/index');
+const routes = require('./routes');
 
 const app = express();
 app.use(cors());
