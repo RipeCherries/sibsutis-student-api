@@ -1,16 +1,23 @@
 import React, {useState} from "react";
+import {IoSend} from "react-icons/io5";
+import {FiLoader} from "react-icons/fi";
+import {MdCloudDone} from "react-icons/md";
 import axios from "axios";
 import {toast} from 'react-toastify';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {clearUploadedFile} from "../../store/fileReducer";
+import {clearStartOfSemester} from "../../store/startOfSemesterReducer";
 import {fileRead} from "../../utils/fileRead";
 import {getGroups} from "../../utils/getGroups";
 import {formatLessons} from "../../utils/formatLessons";
 
 import "./send-button.css";
+import {setLastUpdate} from "../../store/lastUpdateReducer";
 
 const SendButton = () => {
     const startOfSemester = useSelector(store => store.startOfSemester.date);
     const uploadedFile = useSelector(store => store.file.uploadedFile);
+    const dispatch = useDispatch();
 
     const [fetching, setFetching] = useState(false);
     const [complete, setComplete] = useState(false);
@@ -40,11 +47,28 @@ const SendButton = () => {
             await axios.put("http://localhost:8080/lessons", formattedLessons);
             await axios.put("http://localhost:8080/last-update", {date: new Date().getTime()});
 
+            fetchLastUpdate();
+
             setFetching((prevState) => !prevState);
             setComplete((prevState) => !prevState);
         } catch (error) {
             toast.error(error.message);
+            setFetching((prevState) => false);
+            setComplete((prevState) => false);
         }
+
+        dispatch(clearUploadedFile());
+        dispatch(clearStartOfSemester());
+    }
+
+    const fetchLastUpdate = () => {
+        axios.get('http://localhost:8080/last-update').then(response => {
+            const data = response.data;
+            const lastUpdateDate = new Date(data.date);
+            dispatch(setLastUpdate(lastUpdateDate));
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     const isDisabled = () => {
@@ -57,6 +81,7 @@ const SendButton = () => {
             onClick={handleSubmit}
             className="send-button"
         >
+            {fetching ? (<FiLoader/>) : complete ? (<MdCloudDone/>) : (<IoSend/>)}
             {fetching ? "Обработка данных" : complete ? "Готово" : "Отправить"}
         </button>
     );
