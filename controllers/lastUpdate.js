@@ -7,7 +7,7 @@ module.exports.getLastUpdate = (req, res) => {
         return res.status(404).json({ message: 'Данные о последнем обновлении отсутствуют' });
       }
 
-      res.send(lastUpdate);
+      res.send(lastUpdate[0]);
     })
     .catch((error) => res.status(500).json({
       message: 'Произошла ошибка при получении данных из БД',

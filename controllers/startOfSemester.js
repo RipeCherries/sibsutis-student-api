@@ -7,7 +7,7 @@ module.exports.getStartOfSemester = (req, res) => {
         return res.status(404).json({ message: 'Данные о начале семестра отсутствуют' });
       }
 
-      res.send(startOfSemester);
+      res.send(startOfSemester[0]);
     })
     .catch((error) => res.status(500).json({
       message: 'Произошла ошибка при получении данных из БД',
