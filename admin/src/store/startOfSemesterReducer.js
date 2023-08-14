@@ -12,7 +12,7 @@ const startOfSemesterReducer = (state = initialState, action) => {
         case 'CLEAR_DATE':
             return {
                 ...state,
-                date: null
+                date: new Date()
             }
         default:
             return state;
@@ -22,6 +22,10 @@ const startOfSemesterReducer = (state = initialState, action) => {
 export const setStartOfSemester = (date) => ({
     type: 'SET_DATE',
     payload: date
+});
+
+export const clearStartOfSemester = () => ({
+   type: 'CLEAR_DATE'
 });
 
 export default startOfSemesterReducer;
