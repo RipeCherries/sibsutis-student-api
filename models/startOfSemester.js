@@ -5,6 +5,8 @@ const startOfSemesterSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Поле date должно быть заполнено!'],
   },
+}, {
+  versionKey: false
 });
 
 const StartOfSemester = mongoose.model('StartOfSemester', startOfSemesterSchema, 'start-of-semester');
