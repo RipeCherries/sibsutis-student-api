@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import Calendar from "react-calendar";
 
-import {useDetect} from "../../hooks/useDetect";
+import useDetect from "../../hooks/useDetect";
 import {locale, calendarOptions} from "./calendarConfig";
 
 import "./calendar-picker.css";

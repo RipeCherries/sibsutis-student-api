@@ -1,14 +1,16 @@
-export const getGroups = (data) => {
-    const groupsMap = new Map();
+const getGroups = (data) => {
+  const groupsMap = new Map();
 
-    data.forEach((element) => {
-        const groupName = element['Группа'];
+  data.forEach((element) => {
+    const groupName = element['Группа'];
 
-        if (!groupsMap.has(groupName)) {
-            const groupId = groupsMap.size + 1;
-            groupsMap.set(groupName, {groupName, groupId});
-        }
-    });
+    if (!groupsMap.has(groupName)) {
+      const groupId = groupsMap.size + 1;
+      groupsMap.set(groupName, { groupName, groupId });
+    }
+  });
 
-    return Array.from(groupsMap.values());
+  return Array.from(groupsMap.values());
 };
+
+export default getGroups;

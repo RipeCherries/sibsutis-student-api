@@ -7,9 +7,9 @@ import {toast} from 'react-toastify';
 import {useSelector, useDispatch} from "react-redux";
 import {clearUploadedFile} from "../../store/fileReducer";
 import {clearStartOfSemester} from "../../store/startOfSemesterReducer";
-import {fileRead} from "../../utils/fileRead";
-import {getGroups} from "../../utils/getGroups";
-import {formatLessons} from "../../utils/formatLessons";
+import fileRead from "../../utils/fileRead";
+import getGroups from "../../utils/getGroups";
+import formatLessons from "../../utils/formatLessons";
 
 import "./send-button.css";
 import {setLastUpdate} from "../../store/lastUpdateReducer";
