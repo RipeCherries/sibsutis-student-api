@@ -2,7 +2,7 @@ const initialState = {
   date: null,
 };
 
-const lastUpdateReducer = (action, state = initialState) => {
+const lastUpdateReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_LAST_UPDATE_DATE':
       return {

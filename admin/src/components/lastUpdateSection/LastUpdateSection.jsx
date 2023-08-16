@@ -11,7 +11,7 @@ const LastUpdateSection = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/last-update').then(response => {
+        axios.get('/last-update').then(response => {
             const data = response.data;
             const lastUpdateDate = new Date(data.date);
             dispatch(setLastUpdate(lastUpdateDate));

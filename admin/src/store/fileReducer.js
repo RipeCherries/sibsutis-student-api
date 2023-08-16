@@ -2,7 +2,7 @@ const initialState = {
   uploadedFile: null,
 };
 
-const fileReducer = (action, state = initialState) => {
+const fileReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_UPLOADED_FILE':
       return {

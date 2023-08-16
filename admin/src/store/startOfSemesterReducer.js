@@ -2,7 +2,7 @@ const initialState = {
   date: new Date(),
 };
 
-const startOfSemesterReducer = (action, state = initialState) => {
+const startOfSemesterReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_DATE':
       return {

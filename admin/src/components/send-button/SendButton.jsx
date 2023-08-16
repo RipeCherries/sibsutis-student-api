@@ -42,10 +42,10 @@ const SendButton = () => {
             const groups = getGroups(JSON.parse(lessons));
             const formattedLessons = formatLessons(JSON.parse(lessons), groups);
 
-            await axios.put("http://localhost:8080/start-of-semester", {date: startOfSemester.getTime()});
-            await axios.put("http://localhost:8080/groups", groups);
-            await axios.put("http://localhost:8080/lessons", formattedLessons);
-            await axios.put("http://localhost:8080/last-update", {date: new Date().getTime()});
+            await axios.put("/start-of-semester", {date: startOfSemester.getTime()});
+            await axios.put("/groups", groups);
+            await axios.put("/lessons", formattedLessons);
+            await axios.put("/last-update", {date: new Date().getTime()});
 
             fetchLastUpdate();
 
@@ -62,7 +62,7 @@ const SendButton = () => {
     }
 
     const fetchLastUpdate = () => {
-        axios.get('http://localhost:8080/last-update').then(response => {
+        axios.get('/last-update').then(response => {
             const data = response.data;
             const lastUpdateDate = new Date(data.date);
             dispatch(setLastUpdate(lastUpdateDate));
