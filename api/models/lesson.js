@@ -48,7 +48,7 @@ const lessonSchema = new mongoose.Schema({
     require: [true, 'Поле name должно быть заполнено'],
   },
 }, {
-  versionKey: false
+  versionKey: false,
 });
 
 const Lesson = mongoose.model('Lesson', lessonSchema, 'lessons');

@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -11,8 +11,8 @@ const routes = require('./routes');
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json({limit: "10mb"}));
-app.use(bodyParser.urlencoded({limit: "10mb", extended: true}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(routes);
 app.use('/admin', express.static(path.join(__dirname, '..', 'admin', 'build')));

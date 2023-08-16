@@ -1,5 +1,5 @@
 const express = require('express');
-const { getLessons, getLessonsByGroupId, updateLessons} = require('../controllers/lessons');
+const { getLessons, getLessonsByGroupId, updateLessons } = require('../controllers/lessons');
 
 const lessonsRouter = express.Router();
 

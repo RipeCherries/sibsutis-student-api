@@ -6,7 +6,7 @@ const lastUpdateSchema = new mongoose.Schema({
     required: [true, 'Поле date должно быть заполнено!'],
   },
 }, {
-  versionKey: false
+  versionKey: false,
 });
 
 const LastUpdate = mongoose.model('LastUpdate', lastUpdateSchema, 'last-update');

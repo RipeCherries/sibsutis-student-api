@@ -10,7 +10,7 @@ const groupSchema = new mongoose.Schema({
     required: [true, 'Поле groupId должно быть заполнено!'],
   },
 }, {
-  versionKey: false
+  versionKey: false,
 });
 
 const Group = mongoose.model('Group', groupSchema, 'groups');
