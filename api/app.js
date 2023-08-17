@@ -15,8 +15,8 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(routes);
-app.use('/admin', express.static(path.join(__dirname, '..', 'admin', 'build')));
-app.use('/static', express.static(path.join(__dirname, '..', 'admin', 'build', 'static')));
+app.use('/admin', express.static(path.join(__dirname, 'admin-build')));
+app.use('/static', express.static(path.join(__dirname, 'admin-build', 'static')));
 
 mongoose
   .connect(DB_PATH, {
