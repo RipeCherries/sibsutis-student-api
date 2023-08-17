@@ -4,8 +4,8 @@
   "description": "Backend of the application \"Schedule of lessons of the Siberian State University of Telecommunications and Informatics\"",
   "author": "Alexey Egoshin",
   "scripts": {
-    "dev": "nodemon app.js",
-    "prod": "node app.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
