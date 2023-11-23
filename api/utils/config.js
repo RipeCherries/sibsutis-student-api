@@ -3,6 +3,7 @@ const {
   DB_PATH,
   ADMIN_API_KEY,
   APPLICATION_API_KEY,
+  EXTERNAL_API_URL
 } = process.env;
 
 module.exports = {
@@ -10,4 +11,5 @@ module.exports = {
   DB_PATH,
   ADMIN_API_KEY,
   APPLICATION_API_KEY,
+  EXTERNAL_API_URL
 };

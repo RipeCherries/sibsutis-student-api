@@ -15,23 +15,16 @@ module.exports.getLastUpdate = (req, res) => {
     }));
 };
 
-module.exports.updateLastUpdate = (req, res) => {
-  const newData = req.body;
+module.exports.updateLastUpdate = async (newLastUpdate) => {
+    try {
+        const updatedData = await LastUpdate.findOneAndUpdate({}, newLastUpdate, { new: true });
 
-  if (!newData || Object.keys(newData).length === 0) {
-    return res.status(400).json({ message: 'Не предоставлены данные для обновления' });
-  }
-
-  LastUpdate.findOneAndUpdate({}, newData, { new: true })
-    .then((updatedData) => {
-      if (updatedData.length === 0) {
-        return res.status(400).json({ message: 'Документ в коллекции не найден' });
-      }
-
-      res.json({ status: 'success', data: updatedData });
-    })
-    .catch((error) => res.status(500).json({
-      message: 'Произошла ошибка при обновлении данных в БД',
-      error: error.message,
-    }));
+        if (!updatedData) {
+            console.log('Документы в коллекции не найдены');
+        } else {
+            console.log('Данные о последнем обновлении успешно обновлены');
+        }
+    } catch (error) {
+        console.log('Произошла ошибка при обновлении данных в БД: ', error.message);
+    }
 };

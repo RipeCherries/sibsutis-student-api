@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const { PORT, DB_PATH } = require('./utils/config');
 const routes = require('./routes');
+const { checkUpdateFromExternalAPI } = require('./controllers/updateData');
 
 const app = express();
 app.use(cors());
@@ -27,6 +28,16 @@ mongoose
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Connected to MongoDB'));
+
+checkUpdateFromExternalAPI().then(() => {
+    console.log("Данные успешно обновились");
+});
+
+setInterval(() => {
+    checkUpdateFromExternalAPI().then(() => {
+        console.log("Данные успешно обновились");
+    });
+}, 20 * 60 * 60 * 1000);
 
 app.listen(PORT, () => console.log(`API запущено на порту ${PORT}`));
 
