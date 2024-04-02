@@ -30,14 +30,17 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Connected to MongoDB'));
 
 checkUpdateFromExternalAPI().then(() => {
-    console.log("Данные успешно обновились");
+  console.log('Данные успешно обновились');
 });
 
-setInterval(() => {
+setInterval(
+  () => {
     checkUpdateFromExternalAPI().then(() => {
-        console.log("Данные успешно обновились");
+      console.log('Данные успешно обновились');
     });
-}, 20 * 60 * 60 * 1000);
+  },
+  20 * 60 * 60 * 1000,
+);
 
 app.listen(PORT, () => console.log(`API запущено на порту ${PORT}`));
 

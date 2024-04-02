@@ -1,15 +1,9 @@
-const {
-  PORT,
-  DB_PATH,
-  ADMIN_API_KEY,
-  APPLICATION_API_KEY,
-  EXTERNAL_API_URL
-} = process.env;
+const { PORT, DB_PATH, ADMIN_API_KEY, APPLICATION_API_KEY, EXTERNAL_API_URL } = process.env;
 
 module.exports = {
   PORT,
   DB_PATH,
   ADMIN_API_KEY,
   APPLICATION_API_KEY,
-  EXTERNAL_API_URL
+  EXTERNAL_API_URL,
 };

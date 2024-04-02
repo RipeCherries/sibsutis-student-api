@@ -9,24 +9,26 @@ module.exports.getGroups = (req, res) => {
 
       res.send(groups);
     })
-    .catch((error) => res.status(500).json({
-      message: 'Произошла ошибка при получении данных из БД',
-      error: error.message,
-    }));
+    .catch((error) =>
+      res.status(500).json({
+        message: 'Произошла ошибка при получении данных из БД',
+        error: error.message,
+      }),
+    );
 };
 
 module.exports.updateGroups = async (newGroups) => {
-    try {
-        await Group.deleteMany({});
+  try {
+    await Group.deleteMany({});
 
-        const updatedData = await Group.insertMany(newGroups);
+    const updatedData = await Group.insertMany(newGroups);
 
-        if (updatedData.length === 0) {
-            console.log('Документы в коллекции не найдены');
-        } else {
-            console.log('Данные о группах успешно обновлены');
-        }
-    } catch (error) {
-        console.log('Произошла ошибка при обновлении данных в БД: ', error.message);
+    if (updatedData.length === 0) {
+      console.log('Документы в коллекции не найдены');
+    } else {
+      console.log('Данные о группах успешно обновлены');
     }
+  } catch (error) {
+    console.log('Произошла ошибка при обновлении данных в БД: ', error.message);
+  }
 };
