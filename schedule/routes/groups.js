@@ -1,11 +1,9 @@
 const express = require('express');
 const { getGroups, updateGroups } = require('../controllers/groups');
-const checkAuthAdmin = require('../middlewares/authAdmin');
-const checkAuthAppliction = require('../middlewares/authApplication');
 
 const groupsRouter = express.Router();
 
-groupsRouter.get('/', checkAuthAppliction, getGroups);
-groupsRouter.put('/', checkAuthAdmin, updateGroups);
+groupsRouter.get('/', getGroups);
+groupsRouter.put('/', updateGroups);
 
 module.exports = groupsRouter;

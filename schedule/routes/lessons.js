@@ -1,12 +1,10 @@
 const express = require('express');
 const { getLessons, getLessonsByGroupId, updateLessons } = require('../controllers/lessons');
-const checkAuthAdmin = require('../middlewares/authAdmin');
-const checkAuthAppliction = require('../middlewares/authApplication');
 
 const lessonsRouter = express.Router();
 
-lessonsRouter.get('/', checkAuthAppliction, getLessons);
-lessonsRouter.put('/', checkAuthAdmin, updateLessons);
-lessonsRouter.get('/:groupId', checkAuthAppliction, getLessonsByGroupId);
+lessonsRouter.get('/', getLessons);
+lessonsRouter.put('/', updateLessons);
+lessonsRouter.get('/:groupId', getLessonsByGroupId);
 
 module.exports = lessonsRouter;
