@@ -48,6 +48,10 @@ const lessonSchema = new mongoose.Schema(
       type: String,
       require: [true, 'Поле name должно быть заполнено'],
     },
+    typeLesson: {
+      type: String,
+      require: [true, 'Поле typeLesson должно быть заполнено'],
+    }
   },
   {
     versionKey: false,

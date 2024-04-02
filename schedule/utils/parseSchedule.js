@@ -16,6 +16,7 @@ function parseSchedule(data) {
       teacher: element['TEACHER'] ? element['TEACHER'].replace(/(.+) (.).+ (.).+/, '$1 $2. $3.') : '',
       room: element['CLASSROOM'],
       name: element['DISCIPLINE'],
+      typeLesson: element['TYPE_LESSON']
     };
 
     result.push(tmp);
