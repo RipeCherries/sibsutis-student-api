@@ -1,5 +1,0 @@
-# Ignoring *.json files
-**/*.json
-
-# Ignoring .* files
-**/.*
