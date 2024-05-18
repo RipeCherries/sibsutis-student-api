@@ -14,6 +14,7 @@ const sequelize = new Sequelize({
   password: String(process.env.DATABASE_PASSWORD),
   host: String(process.env.DATABASE_HOST),
   port: Number(process.env.DATABASE_PORT),
+  logging: false,
 });
 
 sequelize.addModels([UserModel, TokenModel, GroupModel]);
