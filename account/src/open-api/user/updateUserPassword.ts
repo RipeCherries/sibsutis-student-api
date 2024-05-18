@@ -116,7 +116,7 @@ const updateUserPassword = {
             },
           },
           example: {
-            error: 'An error occurred while updating the user\'s password.',
+            error: "An error occurred while updating the user's password.",
           },
         },
       },

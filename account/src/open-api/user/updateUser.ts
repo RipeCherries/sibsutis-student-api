@@ -69,7 +69,8 @@ const updateUser = {
                   createdAt: { type: 'string', description: 'Временная метка создания записи.' },
                   updatedAt: { type: 'string', description: 'Временная метка последнего обновления записи.' },
                 },
-              }, createdAt: { type: 'string', description: 'Временная метка создания записи.' },
+              },
+              createdAt: { type: 'string', description: 'Временная метка создания записи.' },
               updatedAt: { type: 'string', description: 'Временная метка последнего обновления записи.' },
             },
           },
@@ -156,7 +157,7 @@ const updateUser = {
             },
           },
           example: {
-            error: 'An error occurred while updating the user\'s data.',
+            error: "An error occurred while updating the user's data.",
           },
         },
       },

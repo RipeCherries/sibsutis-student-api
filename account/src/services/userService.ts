@@ -160,7 +160,7 @@ class UserService {
       return fullUser!.toJSON();
     } catch (e: any) {
       logger.error(`An error occurred while updating the user's data:\n${e}`);
-      throw new Error('An error occurred while updating the user\'s data.');
+      throw new Error("An error occurred while updating the user's data.");
     }
   }
 
@@ -186,7 +186,7 @@ class UserService {
       await user!.save();
     } catch (e: any) {
       logger.error(`An error occurred while updating the user's password:\n${e}`);
-      throw new Error('An error occurred while updating the user\'s password.');
+      throw new Error("An error occurred while updating the user's password.");
     }
   }
 
@@ -234,7 +234,7 @@ class UserService {
       return await bcrypt.compare(password, userPassword);
     } catch (e: any) {
       logger.error(`An error occurred while verifying the user's password:\n${e}`);
-      throw new Error('An error occurred while verifying the user\'s password');
+      throw new Error("An error occurred while verifying the user's password");
     }
   }
 }
