@@ -3,6 +3,7 @@
 
 # Production
 */dist
+*/logs
 
 # Misc
 .idea/
