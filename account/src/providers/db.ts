@@ -27,7 +27,7 @@ async function connect(): Promise<void> {
     await sequelize.authenticate();
     logger.info('Successful connection to the database.');
   } catch (e: any) {
-    logger.error(`An error occurred while connecting to the database:\n${e}`)
+    logger.error(`An error occurred while connecting to the database:\n${e}`);
   }
 }
 
