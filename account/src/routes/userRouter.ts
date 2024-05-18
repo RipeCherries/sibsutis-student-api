@@ -30,3 +30,5 @@ router.get('/users', controller.getAllUsers.bind(controller));
 router.post('/refresh', controller.refreshTokens.bind(controller));
 
 export default router;
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiaXZhbml2YW5vdkBleGFtcGxlLnJ1IiwiaWF0IjoxNzE2MDA4NjEyLCJleHAiOjE3MTYwMDg5MTJ9.rund9RJbcyANipn85bUq1VZFC17k9vKdYmFtSgNLCXo
