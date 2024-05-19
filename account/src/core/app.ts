@@ -6,6 +6,7 @@ import { Sequelize } from 'sequelize-typescript';
 import sequelize from '../providers/db';
 import routes from '../routes';
 import logger from '../utils/logger';
+import morganMiddleware from '../middlewares/morganMiddleware';
 
 class App {
   public port: number;
@@ -31,6 +32,7 @@ class App {
     const app = express();
     app.use(cors());
     app.use(bodyParser.json());
+    app.use(morganMiddleware);
     app.use('/', routes);
 
     return app;

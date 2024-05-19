@@ -25,6 +25,7 @@ const format = winston.format.combine(
 const transports = [new winston.transports.Console(), new winston.transports.File({ filename: 'logs/all.log' })];
 
 const logger = winston.createLogger({
+  level: 'http',
   levels,
   format,
   transports,
