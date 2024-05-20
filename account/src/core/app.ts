@@ -3,10 +3,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import { Sequelize } from 'sequelize-typescript';
+import morganMiddleware from '../middlewares/morganMiddleware';
 import sequelize from '../providers/db';
 import routes from '../routes';
 import logger from '../utils/logger';
-import morganMiddleware from '../middlewares/morganMiddleware';
 
 class App {
   public port: number;
@@ -20,8 +20,8 @@ class App {
   private sequelize: Sequelize;
 
   constructor(port = 8001, host = 'localhost') {
-    this.port = port;
-    this.host = host;
+    this.host = String(process.env.HOST) || host;
+    this.port = Number(process.env.PORT) || port;
 
     this.app = this.createApp();
     this.server = this.createServer();
@@ -45,7 +45,7 @@ class App {
   public start(): void {
     this.server.listen(this.port, () => {
       logger.info(
-        `The microservice is launched at http://${this.host}:${this.port} Documentation: http://localhost:8001/docs`,
+        `The microservice is launched at http://${this.host}:${this.port} Documentation: http://${this.host}:${this.port}/docs`,
       );
     });
   }
