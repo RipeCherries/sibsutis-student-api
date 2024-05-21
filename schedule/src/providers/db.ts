@@ -3,6 +3,7 @@ import { Sequelize } from 'sequelize-typescript';
 import LessonModel from '../models/lessonModel';
 import TimeModel from '../models/timeModel';
 import logger from '../utils/logger';
+import timeInitialization from '../utils/timeInitialization';
 
 dotenv.config();
 
@@ -19,6 +20,10 @@ const sequelize = new Sequelize({
 sequelize.addModels([LessonModel, TimeModel]);
 
 sequelize.sync().then(() => {
+  timeInitialization().then(() => {
+    logger.info('Successful initialization of class time');
+  });
+
   logger.info('Successful synchronization of database models.');
 });
 
