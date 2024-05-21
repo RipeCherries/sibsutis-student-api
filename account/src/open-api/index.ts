@@ -9,6 +9,7 @@ import loginUser from './user/loginUser';
 import refreshTokens from './user/refreshTokens';
 import updateUser from './user/updateUser';
 import updateUserPassword from './user/updateUserPassword';
+import verifyToken from './user/verifyToken';
 
 export {
   createUser,
@@ -22,4 +23,5 @@ export {
   getAllGroups,
   getGroupByID,
   updateGroups,
+  verifyToken,
 };

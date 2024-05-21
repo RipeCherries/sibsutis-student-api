@@ -29,4 +29,6 @@ router.get('/users', controller.getAllUsers.bind(controller));
 // Обновление токенов
 router.post('/refresh', controller.refreshTokens.bind(controller));
 
+router.post('/verify-token', controller.verifyToken.bind(controller));
+
 export default router;

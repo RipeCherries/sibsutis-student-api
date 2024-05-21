@@ -42,6 +42,9 @@ const swaggerDocument = {
     '/refresh': {
       post: Documentation.refreshTokens,
     },
+    'verify-token': {
+      post: Documentation.verifyToken,
+    },
     '/groups': {
       get: Documentation.getAllGroups,
       put: Documentation.updateGroups,

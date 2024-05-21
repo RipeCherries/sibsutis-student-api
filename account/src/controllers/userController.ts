@@ -337,6 +337,40 @@ class UserController {
       return res.status(500).json({ error: e.message });
     }
   }
+
+  /**
+   * **Проверяет токен доступа.**
+   *
+   * *Примечания:*
+   * - Функция принимает токен доступа из тела запроса и проверяет его валидность.
+   * - Если токен отсутствует в теле запроса, возвращается ответ с кодом состояния 400 (Bad Request) и сообщением об ошибке.
+   * - Если токен недействителен, возвращается ответ с кодом состояния 401 (Unauthorized) и сообщением об ошибке.
+   * - В случае успешной проверки токена, возвращается ответ с кодом состояния 200 (OK) и сообщением о валидности токена.
+   * - Если происходит ошибка при проверке токена, возвращается ответ с кодом состояния 500 (Internal Server Error) и сообщением об ошибке.
+   *
+   * @param req - Объект запроса Express, содержащий тело запроса с токеном.
+   * @param res - Объект ответа Express.
+   * @returns Промис, который разрешается ответом Express с кодом состояния 200 и сообщением о валидности токена в случае успешной проверки, или с кодом состояния 400, 401, или 500 и сообщением об ошибке в случае ошибки.
+   */
+  async verifyToken(req: Request, res: Response): Promise<Response> {
+    try {
+      const { token } = req.body;
+
+      if (!token) {
+        return res.status(400).json({ error: 'Required fields are missing.' });
+      }
+
+      const userData = this.tokenService.verifyAccessToken(token);
+
+      if (!userData) {
+        return res.status(401).json({ error: 'Invalid token.' });
+      }
+
+      return res.status(200).json({ message: 'Token is valid.' });
+    } catch (e: any) {
+      return res.status(500).json({ error: e.message });
+    }
+  }
 }
 
 export default UserController;
