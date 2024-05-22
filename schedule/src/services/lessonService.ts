@@ -65,7 +65,7 @@ class LessonService {
       });
     } catch (e) {
       logger.error(`An error occurred while searching for the group schedule:\n${e}`);
-      throw new Error('An error occurred while searching for the group schedule');
+      throw new Error('An error occurred while searching for the group schedule.');
     }
   }
 
@@ -81,10 +81,13 @@ class LessonService {
    */
   async getAllLessons(): Promise<LessonModel[]> {
     try {
-      return await LessonModel.findAll();
+      return await LessonModel.findAll({
+        attributes: { exclude: ['timeID'] },
+        include: [{ model: TimeModel }],
+      });
     } catch (e: any) {
       logger.error(`An error occurred while searching for the entire schedule:\n${e}`);
-      throw new Error('An error occurred while searching for the entire schedule');
+      throw new Error('An error occurred while searching for the entire schedule.');
     }
   }
 }
