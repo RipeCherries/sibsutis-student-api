@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import GroupModel from '../models/groupModel';
 import UserModel from '../models/userModel';
 import logger from '../utils/logger';
