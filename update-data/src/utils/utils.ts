@@ -39,7 +39,9 @@ class Utils {
     const uniqueGroups: Set<string> = new Set();
 
     schedule.forEach((element) => {
-      uniqueGroups.add(element.GROUP);
+      if (element.GROUP) {
+        uniqueGroups.add(element.GROUP);
+      }
     });
 
     return Array.from(uniqueGroups) as string[];
