@@ -90,7 +90,10 @@
    git clone https://github.com/RipeCherries/sibsutis-student-api.git
    cd sibsutis-student-api
    ```
-2. Сборка и запуск Docker контейнеров:
+2. Настройте переменные окружения:
+   
+   Создайте файл .env в директории каждого сервиса и добавьте необходимые настройки. Пример находится в файле .env.example
+3. Сборка и запуск Docker контейнеров:
    ```sh
    docker-compose up --build
    ```
