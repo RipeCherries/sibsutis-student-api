@@ -24,7 +24,7 @@
 
 * NodeJS
 * npm
-* PostreSQL
+* PostgreSQL
 * Docker (опционально для установки через Docker)
 * Docker Compose (опционально для установки через Docker)
 
