@@ -9,4 +9,4 @@
 .idea/
 
 # env files
-*/.env
+**/.env
