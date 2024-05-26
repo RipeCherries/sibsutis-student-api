@@ -32,7 +32,7 @@ async function verifyAccessToken(req: Request, res: Response, next: NextFunction
       return res.status(401).json({ error: 'Access token is missing.' });
     }
 
-    const verifyResult = await axios.post('http://localhost:8001/verify-token', { token: accessToken });
+    const verifyResult = await axios.post('http://account:8001/verify-token', { token: accessToken });
 
     if (verifyResult.status === 401) {
       return res.status(401).json(verifyResult.data);

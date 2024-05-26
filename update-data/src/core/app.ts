@@ -254,8 +254,8 @@ class App {
       const groups: string[] = this.utils.parseGroups(schedule);
       const lessons: Lesson[] = this.utils.parseSchedule(schedule);
 
-      await axios.put('http://localhost:8001/groups', { groups });
-      await axios.put('http://localhost:8002/lessons', { lessons });
+      await axios.put('http://account:8001/groups', { groups });
+      await axios.put('http://schedule:8002/lessons', { lessons });
 
       logger.info('Successful distribution of fresh data to other microservices.');
     };
