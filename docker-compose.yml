@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  account:
+    build:
+      context: ./account
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./account/.env
+    depends_on:
+      - postgres
+
+  schedule:
+    build:
+      context: ./schedule
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./schedule/.env
+    depends_on:
+      - postgres
+
+  update-data:
+    build:
+      context: ./update-data
+    env_file:
+      - ./update-data/.env
+    depends_on:
+      - account
+      - schedule
+
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./gateway/.env
+    depends_on:
+      - account
+      - schedule
+      - update-data
+
+  postgres:
+    image: postgres:13
+    env_file:
+      - .env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+
+volumes:
+  postgres-data:
