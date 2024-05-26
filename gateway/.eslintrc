@@ -32,9 +32,6 @@
         "ts": "never",
         "tsx": "never"
       }
-    ],
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "class-methods-use-this": "off"
+    ]
   }
 }

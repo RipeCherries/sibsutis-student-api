@@ -1,2 +1,12 @@
-# WebStorm IDE
-.idea
+# Dependencies
+*/node_modules/
+
+# Production
+*/dist
+*/logs
+
+# Misc
+.idea/
+
+# env files
+**/.env
